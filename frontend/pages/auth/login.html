@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - TeamPulse</title>
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/login.css">
+</head>
+<body class="auth-body">
+
+  <div class="auth-card">
+    
+    <div class="auth-header">
+      <div class="auth-brand">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TeamPulse</span>
+      </div>
+      <p class="auth-subtitle">Enterprise Employee Management Portal</p>
+    </div>
+
+    <!-- Role toggle -->
+    <div class="role-segmented-toggle">
+      <button type="button" class="role-btn active" id="btn-role-admin">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Administrator</span>
+      </button>
+      <button type="button" class="role-btn" id="btn-role-employee">
+        <i class="fa-solid fa-user"></i>
+        <span>Employee</span>
+      </button>
+    </div>
+
+    <!-- Login form -->
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email Address</label>
+        <input type="email" id="login-email" class="form-control" value="admin@teampulse.io" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input type="password" id="login-password" class="form-control" value="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span>Sign In to Portal</span>
+      </button>
+    </form>
+
+    <div class="auth-demo-hint">
+      <span id="role-hint-text">Signing in as <strong>Administrator</strong> (Full system access)</span>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script>
+    let selectedRole = 'admin';
+    const btnAdmin = document.getElementById('btn-role-admin');
+    const btnEmp = document.getElementById('btn-role-employee');
+    const emailInput = document.getElementById('login-email');
+    const hintText = document.getElementById('role-hint-text');
+
+    // Select Admin
+    btnAdmin.onclick = () => {
+      selectedRole = 'admin';
+      btnAdmin.classList.add('active');
+      btnEmp.classList.remove('active');
+      emailInput.value = 'admin@teampulse.io';
+      hintText.innerHTML = 'Signing in as <strong>Administrator</strong> (Full system access)';
+    };
+
+    // Select Employee
+    btnEmp.onclick = () => {
+      selectedRole = 'employee';
+      btnEmp.classList.add('active');
+      btnAdmin.classList.remove('active');
+      emailInput.value = 'alex.morgan@company.com';
+      hintText.innerHTML = 'Signing in as <strong>Employee</strong> (Self-service view)';
+    };
+
+    // Login submit
+    document.getElementById('login-form').onsubmit = async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      const password = document.getElementById('login-password').value;
+
+      const result = await API.login(email, password, selectedRole);
+      if (result.success) {
+        Auth.setUser(result.user);
+        if (result.user.role === 'admin') {
+          window.location.href = '../admin/dashboard.html';
+        } else {
+          window.location.href = '../employee/profile.html';
+        }
+      } else {
+        alert(result.message || 'Login failed.');
+      }
+    };
+  </script>
+</body>
+</html>

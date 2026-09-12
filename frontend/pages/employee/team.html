@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Team - Employee | TeamPulse</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TeamPulse</span>
+      </div>
+
+      <nav class="sidebar-menu" id="employee-nav">
+        <div class="menu-label">EMPLOYEE PORTAL</div>
+        <a href="profile.html" class="nav-item">
+          <i class="fa-solid fa-id-card"></i>
+          <span>My Profile</span>
+        </a>
+        <a href="attendance.html" class="nav-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>My Attendance</span>
+        </a>
+        <a href="team.html" class="nav-item active">
+          <i class="fa-solid fa-user-group"></i>
+          <span>My Team</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <i class="fa-solid fa-circle-user avatar-icon"></i>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">Employee</span>
+            <span class="user-role-tag" id="user-display-role">Employee</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="logout-btn" title="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="page-title">My Department Team</h1>
+          <p class="page-subtitle">View colleagues and team leads sharing your department</p>
+        </div>
+        <div class="header-right">
+          <button class="btn-icon" id="theme-toggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="content-container">
+
+        <!-- Department banner -->
+        <div class="card" style="margin-bottom: 28px; background: linear-gradient(135deg, #1e293b, #0f172a); color: #fff;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap: 16px;">
+            <div>
+              <span class="badge badge-dept" style="background: rgba(255,255,255,0.1); color: #fff; margin-bottom: 8px;">
+                Assigned Division
+              </span>
+              <h2 id="team-dept-name" style="font-size: 1.5rem; font-weight: 700; color: #fff;">Department</h2>
+              <p style="font-size: 0.9rem; color: #94a3b8; margin-top: 4px;">
+                Department Lead: <strong id="team-dept-lead" style="color: #fff;">Lead</strong>
+              </p>
+            </div>
+            <div style="font-size: 2.5rem; color: var(--primary);">
+              <i class="fa-solid fa-people-roof"></i>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px;">Department Colleagues</h3>
+
+        <!-- Colleagues grid -->
+        <div class="cards-grid" id="colleagues-grid">
+          <!-- Populated by JS -->
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/employee.js"></script>
+  <script>
+    Employee.initTeam();
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Engineering",
+    "lead": "David Chen",
+    "icon": "fa-solid fa-code"
+  },
+  {
+    "name": "Product Design",
+    "lead": "Sophia Patel",
+    "icon": "fa-solid fa-pen-ruler"
+  },
+  {
+    "name": "Human Resources",
+    "lead": "Marcus Vance",
+    "icon": "fa-solid fa-people-group"
+  },
+  {
+    "name": "Marketing",
+    "lead": "Alex Morgan",
+    "icon": "fa-solid fa-bullhorn"
+  }
+]

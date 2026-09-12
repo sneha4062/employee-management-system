@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2026-09-11",
+    "employeeId": "EMP-1001",
+    "status": "Present"
+  },
+  {
+    "date": "2026-09-11",
+    "employeeId": "EMP-1002",
+    "status": "Present"
+  },
+  {
+    "date": "2026-09-11",
+    "employeeId": "EMP-1003",
+    "status": "On Leave"
+  },
+  {
+    "date": "2026-09-11",
+    "employeeId": "EMP-1004",
+    "status": "Late"
+  }
+]

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Departments - Admin | TeamPulse</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TeamPulse</span>
+      </div>
+
+      <nav class="sidebar-menu" id="admin-nav">
+        <div class="menu-label">ADMINISTRATION</div>
+        <a href="dashboard.html" class="nav-item">
+          <i class="fa-solid fa-users"></i>
+          <span>Workforce</span>
+        </a>
+        <a href="departments.html" class="nav-item active">
+          <i class="fa-solid fa-building"></i>
+          <span>Departments</span>
+        </a>
+        <a href="attendance.html" class="nav-item">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fa-solid fa-sliders"></i>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <i class="fa-solid fa-circle-user avatar-icon"></i>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">Admin</span>
+            <span class="user-role-tag" id="user-display-role">Administrator</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="logout-btn" title="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="page-title">Departments</h1>
+          <p class="page-subtitle">Manage company divisions, leads, and organizational structure</p>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-primary" id="btn-add-department">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Department</span>
+          </button>
+          <button class="btn-icon" id="theme-toggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="content-container">
+        <!-- Departments list -->
+        <div class="cards-grid" id="departments-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Add Department Modal -->
+  <div class="modal-overlay" id="dept-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add Department</h3>
+        <button class="btn-close" onclick="Admin.closeModal('dept-modal')">&times;</button>
+      </div>
+      <form id="dept-form">
+        <div class="form-group">
+          <label class="form-label">Department Name</label>
+          <input type="text" id="dept-name" class="form-control" required placeholder="e.g. Finance">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department Lead</label>
+          <input type="text" id="dept-lead" class="form-control" required placeholder="e.g. Jordan Taylor">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Icon Class</label>
+          <select id="dept-icon" class="form-control">
+            <option value="fa-solid fa-building">Building / Operations</option>
+            <option value="fa-solid fa-code">Engineering / Tech</option>
+            <option value="fa-solid fa-pen-ruler">Design / Creative</option>
+            <option value="fa-solid fa-people-group">HR / People</option>
+            <option value="fa-solid fa-bullhorn">Marketing / Growth</option>
+            <option value="fa-solid fa-coins">Finance / Accounting</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="Admin.closeModal('dept-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Department</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/admin.js"></script>
+  <script>
+    Admin.initDepartments();
+  </script>
+</body>
+</html>

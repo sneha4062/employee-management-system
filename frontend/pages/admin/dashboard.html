@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workforce Directory - Admin | TeamPulse</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TeamPulse</span>
+      </div>
+
+      <nav class="sidebar-menu" id="admin-nav">
+        <div class="menu-label">ADMINISTRATION</div>
+        <a href="dashboard.html" class="nav-item active">
+          <i class="fa-solid fa-users"></i>
+          <span>Workforce</span>
+        </a>
+        <a href="departments.html" class="nav-item">
+          <i class="fa-solid fa-building"></i>
+          <span>Departments</span>
+        </a>
+        <a href="attendance.html" class="nav-item">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fa-solid fa-sliders"></i>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <i class="fa-solid fa-circle-user avatar-icon"></i>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">Admin</span>
+            <span class="user-role-tag" id="user-display-role">Administrator</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="logout-btn" title="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="page-title">Workforce Directory</h1>
+          <p class="page-subtitle">Manage company employees, designations, and permissions</p>
+        </div>
+        <div class="header-right">
+          <button class="btn-icon" id="theme-toggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="content-container">
+
+        <!-- Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-info">
+              <h3>Total Workforce</h3>
+              <div class="stat-value" id="stat-total">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--success-bg); color: var(--success);">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Active Staff</h3>
+              <div class="stat-value" id="stat-active">0</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--warning-bg); color: var(--warning);">
+              <i class="fa-solid fa-user-clock"></i>
+            </div>
+            <div class="stat-info">
+              <h3>On Leave</h3>
+              <div class="stat-value" id="stat-leave">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search and filters -->
+        <div class="controls-bar">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search by name, role, email...">
+          </div>
+
+          <div class="filters-group">
+            <select id="filter-dept" class="select-filter">
+              <option value="all">All Departments</option>
+            </select>
+
+            <select id="filter-status" class="select-filter">
+              <option value="all">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+
+            <button class="btn btn-primary" id="btn-add-employee">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Add Employee</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Employee table -->
+        <div class="table-card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Role / Title</th>
+                <th>Email</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="employee-table-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Add / Edit Modal -->
+  <div class="modal-overlay" id="employee-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-text">Add New Employee</h3>
+        <button class="btn-close" onclick="Admin.closeModal('employee-modal')">&times;</button>
+      </div>
+      <form id="employee-form">
+        <input type="hidden" id="emp-modal-id">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="emp-modal-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="emp-modal-email" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="text" id="emp-modal-phone" class="form-control" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <select id="emp-modal-dept" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Job Title / Role</label>
+          <input type="text" id="emp-modal-role" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Joining Date</label>
+          <input type="date" id="emp-modal-date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select id="emp-modal-status" class="form-control">
+            <option value="Active">Active</option>
+            <option value="On Leave">On Leave</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="Admin.closeModal('employee-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Modal -->
+  <div class="modal-overlay" id="view-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Employee Profile</h3>
+        <button class="btn-close" onclick="Admin.closeModal('view-modal')">&times;</button>
+      </div>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div id="view-initials" class="user-avatar-initials-xl" style="margin: 0 auto 10px;"></div>
+        <h3 id="view-name" style="font-size: 1.2rem; font-weight: 700;"></h3>
+        <p id="view-role" style="font-size: 0.9rem; color: var(--text-muted);"></p>
+        <span id="view-id" class="badge badge-dept" style="margin-top: 6px;"></span>
+      </div>
+      <div class="profile-fields">
+        <div class="field-group">
+          <label>Department</label>
+          <div class="field-value" id="view-dept"></div>
+        </div>
+        <div class="field-group">
+          <label>Status</label>
+          <div class="field-value" id="view-status"></div>
+        </div>
+        <div class="field-group">
+          <label>Email</label>
+          <div class="field-value" id="view-email"></div>
+        </div>
+        <div class="field-group">
+          <label>Phone</label>
+          <div class="field-value" id="view-phone"></div>
+        </div>
+        <div class="field-group">
+          <label>Join Date</label>
+          <div class="field-value" id="view-date"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="Admin.closeModal('view-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/admin.js"></script>
+  <script>
+    // Load dashboard
+    Admin.initDashboard();
+  </script>
+</body>
+</html>

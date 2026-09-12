@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamPulse - Redirecting...</title>
+  <script>
+    // Check if user is logged in
+    const session = localStorage.getItem('teampulse_session');
+    if (session) {
+      try {
+        const user = JSON.parse(session);
+        if (user.role === 'admin') {
+          window.location.replace('pages/admin/dashboard.html');
+        } else {
+          window.location.replace('pages/employee/profile.html');
+        }
+      } catch (e) {
+        window.location.replace('pages/auth/login.html');
+      }
+    } else {
+      // Otherwise redirect to sign in
+      window.location.replace('pages/auth/login.html');
+    }
+  </script>
+</head>
+<body>
+  <p style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+    Redirecting to <a href="pages/auth/login.html">Sign-In</a>...
+  </p>
+</body>
+</html>

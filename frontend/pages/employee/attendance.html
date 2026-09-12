@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Attendance - Employee | TeamPulse</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TeamPulse</span>
+      </div>
+
+      <nav class="sidebar-menu" id="employee-nav">
+        <div class="menu-label">EMPLOYEE PORTAL</div>
+        <a href="profile.html" class="nav-item">
+          <i class="fa-solid fa-id-card"></i>
+          <span>My Profile</span>
+        </a>
+        <a href="attendance.html" class="nav-item active">
+          <i class="fa-solid fa-clock"></i>
+          <span>My Attendance</span>
+        </a>
+        <a href="team.html" class="nav-item">
+          <i class="fa-solid fa-user-group"></i>
+          <span>My Team</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <i class="fa-solid fa-circle-user avatar-icon"></i>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">Employee</span>
+            <span class="user-role-tag" id="user-display-role">Employee</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="logout-btn" title="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="page-title">My Attendance Record</h1>
+          <p class="page-subtitle">Verify your daily attendance logs and working status</p>
+        </div>
+        <div class="header-right">
+          <button class="btn-icon" id="theme-toggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="content-container">
+
+        <div class="card" style="max-width: 550px; margin: 0 auto;">
+          <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 20px;">Check Attendance Status</h2>
+          
+          <div class="form-group">
+            <label class="form-label">Select Date to Inspect</label>
+            <input type="date" id="my-attendance-date" class="form-control">
+          </div>
+
+          <div style="margin-top: 24px; padding: 20px; background-color: var(--bg-app); border-radius: var(--radius); border: 1px solid var(--border-color); text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+              Status on <strong id="my-attendance-date-text">...</strong>
+            </p>
+            <span id="my-attendance-status" class="badge badge-present" style="font-size: 1rem; padding: 6px 16px;">
+              Present
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/employee.js"></script>
+  <script>
+    Employee.initAttendance();
+  </script>
+</body>
+</html>

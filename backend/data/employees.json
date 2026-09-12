@@ -1,0 +1,52 @@
+[
+  {
+    "id": "EMP-1001",
+    "fullName": "Alex Morgan",
+    "email": "alex.morgan@company.com",
+    "phone": "+1 (555) 234-5678",
+    "department": "Engineering",
+    "role": "Senior Frontend Engineer",
+    "joinDate": "2023-03-15",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1002",
+    "fullName": "David Chen",
+    "email": "david.chen@company.com",
+    "phone": "+1 (555) 876-5432",
+    "department": "Engineering",
+    "role": "Lead Backend Architect",
+    "joinDate": "2022-08-01",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1003",
+    "fullName": "Sophia Patel",
+    "email": "sophia.patel@company.com",
+    "phone": "+1 (555) 345-6789",
+    "department": "Product Design",
+    "role": "Principal UI/UX Designer",
+    "joinDate": "2023-01-10",
+    "status": "On Leave"
+  },
+  {
+    "id": "EMP-1004",
+    "fullName": "Marcus Vance",
+    "email": "marcus.vance@company.com",
+    "phone": "+1 (555) 987-6543",
+    "department": "Human Resources",
+    "role": "People Operations Manager",
+    "joinDate": "2021-11-20",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1005",
+    "fullName": "Krishna",
+    "email": "krishna.inbox404@gmail.com",
+    "phone": "+919708851745",
+    "department": "Engineering",
+    "role": "SDE",
+    "joinDate": "2026-09-11",
+    "status": "Active"
+  }
+]

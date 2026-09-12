@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - Employee | TeamPulse</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>TeamPulse</span>
+      </div>
+
+      <nav class="sidebar-menu" id="employee-nav">
+        <div class="menu-label">EMPLOYEE PORTAL</div>
+        <a href="profile.html" class="nav-item active">
+          <i class="fa-solid fa-id-card"></i>
+          <span>My Profile</span>
+        </a>
+        <a href="attendance.html" class="nav-item">
+          <i class="fa-solid fa-clock"></i>
+          <span>My Attendance</span>
+        </a>
+        <a href="team.html" class="nav-item">
+          <i class="fa-solid fa-user-group"></i>
+          <span>My Team</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <i class="fa-solid fa-circle-user avatar-icon"></i>
+          <div class="user-details">
+            <span class="user-name" id="user-display-name">Employee</span>
+            <span class="user-role-tag" id="user-display-role">Employee</span>
+          </div>
+        </div>
+        <button class="btn-logout" id="logout-btn" title="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <h1 class="page-title">My Employee Profile</h1>
+          <p class="page-subtitle">Your official employee credentials and identity record</p>
+        </div>
+        <div class="header-right">
+          <button class="btn-icon" id="theme-toggle" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="content-container">
+
+        <!-- Summary stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-id-badge"></i></div>
+            <div class="stat-info">
+              <h3>Employee ID</h3>
+              <div class="stat-value" id="my-id">...</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--primary-light); color: var(--primary);">
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Department</h3>
+              <div class="stat-value" id="my-dept" style="font-size: 1.25rem;">...</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--success-bg); color: var(--success);">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Status</h3>
+              <div class="stat-value" id="my-status">...</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #e0e7ff; color: #4338ca;">
+              <i class="fa-solid fa-calendar-day"></i>
+            </div>
+            <div class="stat-info">
+              <h3>Joined Date</h3>
+              <div class="stat-value" id="my-join-date" style="font-size: 1.1rem;">...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile card -->
+        <div class="profile-card">
+          <div class="profile-top">
+            <div id="emp-initials" class="user-avatar-initials-xl"></div>
+            <div>
+              <h2 id="emp-full-name" style="font-size: 1.4rem; font-weight: 700;"></h2>
+              <p id="emp-role" style="font-size: 0.95rem; color: var(--text-muted); margin-top: 2px;"></p>
+              <span id="emp-card-dept" class="badge badge-dept" style="margin-top: 8px;"></span>
+            </div>
+          </div>
+
+          <div class="profile-fields">
+            <div class="field-group">
+              <label>Work Email</label>
+              <div class="field-value" id="emp-email"></div>
+            </div>
+            <div class="field-group">
+              <label>Phone Number</label>
+              <div class="field-value" id="emp-phone"></div>
+            </div>
+            <div class="field-group">
+              <label>Access Level</label>
+              <div class="field-value">Self-Service View</div>
+            </div>
+            <div class="field-group">
+              <label>Portal Permissions</label>
+              <div class="field-value">Read-Only</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/employee.js"></script>
+  <script>
+    Employee.initProfile();
+  </script>
+</body>
+</html>
