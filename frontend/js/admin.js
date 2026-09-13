@@ -287,6 +287,54 @@ const Admin = {
   },
 
   // Modal helpers
-  openModal(id) { document.getElementById(id).classList.add('open'); },
-  closeModal(id) { document.getElementById(id).classList.remove('open'); }
+  openModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      // Reset scroll position to top so user always starts at the top of the form
+      const content = modal.querySelector('.modal-content');
+      if (content) {
+        content.scrollTop = 0;
+      }
+    }
+  },
+
+  closeModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+      modal.classList.remove('open');
+    }
+    // Only remove modal-open class if no other modal is currently open
+    if (!document.querySelector('.modal-overlay.open')) {
+      document.body.classList.remove('modal-open');
+    }
+  }
 };
+
+// Global handlers for backdrop click and Escape key dismissal
+function initModalDismissHandlers() {
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      // Close only if user clicks directly on the backdrop (outside modal-content)
+      if (e.target === overlay) {
+        Admin.closeModal(overlay.id);
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const openModal = document.querySelector('.modal-overlay.open');
+      if (openModal) {
+        Admin.closeModal(openModal.id);
+      }
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initModalDismissHandlers);
+} else {
+  initModalDismissHandlers();
+}
