@@ -9,28 +9,44 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 
 frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
-app = Flask(__name__, static_folder=frontend_dir, static_url_path='')
-CORS(app)
+app = Flask(__name__, static_folder=None)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
+
+# In-memory storage cache to ensure resilience on read-only serverless hosts (like Vercel)
+_MEMORY_CACHE = {}
 
 
 # Helpers to read and write JSON files in data/
 
 def read_json(filename):
-    """Read a JSON file from data/ folder."""
+    """Read a JSON file from data/ folder with in-memory fallback."""
+    if filename in _MEMORY_CACHE:
+        return _MEMORY_CACHE[filename]
     filepath = os.path.join(DATA_DIR, filename)
     if not os.path.exists(filepath):
         return []
-    with open(filepath, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            _MEMORY_CACHE[filename] = data
+            return data
+    except Exception as e:
+        print(f"Error reading {filename}: {e}")
+        return []
 
 
 def write_json(filename, data):
-    """Save data to a JSON file in data/ folder."""
+    """Save data to a JSON file in data/ folder, with memory fallback for read-only environments."""
+    _MEMORY_CACHE[filename] = data
     filepath = os.path.join(DATA_DIR, filename)
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2)
+    try:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2)
+    except OSError:
+        # Read-only filesystem (e.g. serverless environments like Vercel)
+        pass
 
 
 # Serve frontend files
@@ -42,7 +58,15 @@ def serve_index():
 
 @app.route('/<path:path>')
 def serve_static(path):
-    return send_from_directory(frontend_dir, path)
+    # Handle requests that might include 'frontend/' prefix
+    if path.startswith('frontend/'):
+        clean_path = path[len('frontend/'):]
+        if os.path.exists(os.path.join(frontend_dir, clean_path)):
+            return send_from_directory(frontend_dir, clean_path)
+    if os.path.exists(os.path.join(frontend_dir, path)):
+        return send_from_directory(frontend_dir, path)
+    # Default fallback to index.html if file doesn't exist
+    return send_from_directory(frontend_dir, 'index.html')
 
 
 # Auth routes
@@ -58,7 +82,7 @@ def login():
     if role == 'admin' or 'admin' in email:
         user = {
             "id": "EMP-ADMIN",
-            "fullName": "System Administrator",
+            "fullName": "Rajesh Sharma",
             "email": "admin@teampulse.io",
             "role": "admin",
             "department": "Executive"
@@ -392,9 +416,11 @@ def handle_settings():
 
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1')
     print("-------------------------------------------------------")
-    print(" TeamPulse Server (Python + Flask) Running on Port 5000")
+    print(f" TeamPulse Server (Python + Flask) Running on Port {port}")
     print(" All Business Logic & JSON Data Handled in Python!")
-    print(" Open http://127.0.0.1:5000 in your browser")
+    print(f" Open http://127.0.0.1:{port} in your browser")
     print("-------------------------------------------------------")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)

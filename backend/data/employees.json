@@ -1,9 +1,9 @@
 [
   {
     "id": "EMP-1001",
-    "fullName": "Alex Morgan",
-    "email": "alex.morgan@company.com",
-    "phone": "+1 (555) 234-5678",
+    "fullName": "Aarav Sharma",
+    "email": "aarav.sharma@company.com",
+    "phone": "+91 98201 23456",
     "department": "Engineering",
     "role": "Senior Frontend Engineer",
     "joinDate": "2023-03-15",
@@ -11,9 +11,9 @@
   },
   {
     "id": "EMP-1002",
-    "fullName": "David Chen",
-    "email": "david.chen@company.com",
-    "phone": "+1 (555) 876-5432",
+    "fullName": "Rohan Verma",
+    "email": "rohan.verma@company.com",
+    "phone": "+91 98202 34567",
     "department": "Engineering",
     "role": "Lead Backend Architect",
     "joinDate": "2022-08-01",
@@ -21,9 +21,9 @@
   },
   {
     "id": "EMP-1003",
-    "fullName": "Sophia Patel",
-    "email": "sophia.patel@company.com",
-    "phone": "+1 (555) 345-6789",
+    "fullName": "Priya Nair",
+    "email": "priya.nair@company.com",
+    "phone": "+91 98203 45678",
     "department": "Product Design",
     "role": "Principal UI/UX Designer",
     "joinDate": "2023-01-10",
@@ -31,9 +31,9 @@
   },
   {
     "id": "EMP-1004",
-    "fullName": "Marcus Vance",
-    "email": "marcus.vance@company.com",
-    "phone": "+1 (555) 987-6543",
+    "fullName": "Sneha Kulkarni",
+    "email": "sneha.kulkarni@company.com",
+    "phone": "+91 98204 56789",
     "department": "Human Resources",
     "role": "People Operations Manager",
     "joinDate": "2021-11-20",
@@ -41,11 +41,11 @@
   },
   {
     "id": "EMP-1005",
-    "fullName": "Krishna",
+    "fullName": "Krishna Prasad",
     "email": "krishna.inbox404@gmail.com",
-    "phone": "+919708851745",
+    "phone": "+91 97088 51745",
     "department": "Engineering",
-    "role": "SDE",
+    "role": "Software Development Engineer",
     "joinDate": "2026-09-11",
     "status": "Active"
   }

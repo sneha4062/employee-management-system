@@ -16,7 +16,7 @@ const Admin = {
     const deptSelect = document.getElementById('filter-dept');
     const modalDeptSelect = document.getElementById('emp-modal-dept');
 
-    if (deptSelect && modalDeptSelect) {
+    if (deptSelect && modalDeptSelect && Array.isArray(depts)) {
       depts.forEach(d => {
         deptSelect.innerHTML += `<option value="${d.name}">${d.name}</option>`;
         modalDeptSelect.innerHTML += `<option value="${d.name}">${d.name}</option>`;
@@ -30,14 +30,20 @@ const Admin = {
       const status = document.getElementById('filter-status')?.value || 'all';
 
       const result = await API.getEmployees(search, dept, status);
+      const employees = result?.employees || [];
+      const stats = result?.stats || { total: 0, active: 0, onLeave: 0, inactive: 0 };
 
       // Update stats cards
-      document.getElementById('stat-total').textContent = result.stats.total;
-      document.getElementById('stat-active').textContent = result.stats.active;
-      document.getElementById('stat-leave').textContent = result.stats.onLeave;
+      const totalEl = document.getElementById('stat-total');
+      const activeEl = document.getElementById('stat-active');
+      const leaveEl = document.getElementById('stat-leave');
+      if (totalEl) totalEl.textContent = stats.total ?? 0;
+      if (activeEl) activeEl.textContent = stats.active ?? 0;
+      if (leaveEl) leaveEl.textContent = stats.onLeave ?? 0;
 
       const tbody = document.getElementById('employee-table-body');
-      if (result.employees.length === 0) {
+      if (!tbody) return;
+      if (employees.length === 0) {
         tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">No employees found.</td></tr>`;
         return;
       }
@@ -151,7 +157,13 @@ const Admin = {
 
     const render = async () => {
       const departments = await API.getDepartments();
-      document.getElementById('departments-grid').innerHTML = departments.map(d => `
+      const grid = document.getElementById('departments-grid');
+      if (!grid) return;
+      if (!Array.isArray(departments) || departments.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">No departments found.</div>';
+        return;
+      }
+      grid.innerHTML = departments.map(d => `
         <div class="card">
           <div class="card-header-flex">
             <div class="card-icon-box"><i class="${d.icon}"></i></div>
@@ -191,14 +203,27 @@ const Admin = {
 
     const render = async () => {
       const data = await API.getAttendance(datePicker.value);
+      const summary = data?.summary || { present: 0, late: 0, onLeave: 0, absent: 0 };
+      const records = Array.isArray(data?.records) ? data.records : [];
 
       // Update summary counts
-      document.getElementById('count-present').textContent = data.summary.present;
-      document.getElementById('count-late').textContent = data.summary.late;
-      document.getElementById('count-leave').textContent = data.summary.onLeave;
-      document.getElementById('count-absent').textContent = data.summary.absent;
+      const elPresent = document.getElementById('count-present');
+      const elLate = document.getElementById('count-late');
+      const elLeave = document.getElementById('count-leave');
+      const elAbsent = document.getElementById('count-absent');
+      if (elPresent) elPresent.textContent = summary.present ?? 0;
+      if (elLate) elLate.textContent = summary.late ?? 0;
+      if (elLeave) elLeave.textContent = summary.onLeave ?? 0;
+      if (elAbsent) elAbsent.textContent = summary.absent ?? 0;
 
-      document.getElementById('attendance-table-body').innerHTML = data.records.map(r => `
+      const tbody = document.getElementById('attendance-table-body');
+      if (!tbody) return;
+      if (records.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 30px;">No attendance records found for this date.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = records.map(r => `
         <tr>
           <td>
             <div class="user-cell">

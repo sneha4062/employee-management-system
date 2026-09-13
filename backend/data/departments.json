@@ -1,22 +1,22 @@
 [
   {
     "name": "Engineering",
-    "lead": "David Chen",
+    "lead": "Rohan Verma",
     "icon": "fa-solid fa-code"
   },
   {
     "name": "Product Design",
-    "lead": "Sophia Patel",
+    "lead": "Priya Nair",
     "icon": "fa-solid fa-pen-ruler"
   },
   {
     "name": "Human Resources",
-    "lead": "Marcus Vance",
+    "lead": "Sneha Kulkarni",
     "icon": "fa-solid fa-people-group"
   },
   {
     "name": "Marketing",
-    "lead": "Alex Morgan",
+    "lead": "Aarav Sharma",
     "icon": "fa-solid fa-bullhorn"
   }
 ]

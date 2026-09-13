@@ -64,6 +64,12 @@
   <script src="../../js/api.js"></script>
   <script src="../../js/auth.js"></script>
   <script>
+    // If already logged in, redirect directly
+    const existingUser = Auth.getUser();
+    if (existingUser && existingUser.role) {
+      window.location.href = existingUser.role === 'admin' ? '../admin/dashboard.html' : '../employee/profile.html';
+    }
+
     let selectedRole = 'admin';
     const btnAdmin = document.getElementById('btn-role-admin');
     const btnEmp = document.getElementById('btn-role-employee');
@@ -84,26 +90,41 @@
       selectedRole = 'employee';
       btnEmp.classList.add('active');
       btnAdmin.classList.remove('active');
-      emailInput.value = 'alex.morgan@company.com';
+      emailInput.value = 'aarav.sharma@company.com';
       hintText.innerHTML = 'Signing in as <strong>Employee</strong> (Self-service view)';
     };
 
     // Login submit
     document.getElementById('login-form').onsubmit = async (e) => {
       e.preventDefault();
-      const email = emailInput.value.trim();
-      const password = document.getElementById('login-password').value;
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnHtml = submitBtn.innerHTML;
 
-      const result = await API.login(email, password, selectedRole);
-      if (result.success) {
-        Auth.setUser(result.user);
-        if (result.user.role === 'admin') {
-          window.location.href = '../admin/dashboard.html';
+      try {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Signing In...</span>';
+
+        const email = emailInput.value.trim();
+        const password = document.getElementById('login-password').value;
+
+        const result = await API.login(email, password, selectedRole);
+        if (result && result.success && result.user) {
+          Auth.setUser(result.user);
+          if (result.user.role === 'admin') {
+            window.location.href = '../admin/dashboard.html';
+          } else {
+            window.location.href = '../employee/profile.html';
+          }
         } else {
-          window.location.href = '../employee/profile.html';
+          alert(result?.message || 'Login failed. Please verify your credentials.');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
         }
-      } else {
-        alert(result.message || 'Login failed.');
+      } catch (err) {
+        console.error('Login error:', err);
+        alert('An unexpected error occurred during sign in. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
       }
     };
   </script>

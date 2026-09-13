@@ -18,5 +18,35 @@
     "date": "2026-09-11",
     "employeeId": "EMP-1004",
     "status": "Late"
+  },
+  {
+    "date": "2026-09-11",
+    "employeeId": "EMP-1005",
+    "status": "Present"
+  },
+  {
+    "employeeId": "EMP-1001",
+    "date": "2026-09-13",
+    "status": "Present"
+  },
+  {
+    "employeeId": "EMP-1002",
+    "date": "2026-09-13",
+    "status": "Present"
+  },
+  {
+    "employeeId": "EMP-1003",
+    "date": "2026-09-13",
+    "status": "Present"
+  },
+  {
+    "employeeId": "EMP-1004",
+    "date": "2026-09-13",
+    "status": "Present"
+  },
+  {
+    "employeeId": "EMP-1005",
+    "date": "2026-09-13",
+    "status": "Present"
   }
 ]
