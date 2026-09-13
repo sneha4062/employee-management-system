@@ -48,5 +48,205 @@
     "role": "Software Development Engineer",
     "joinDate": "2026-09-11",
     "status": "Active"
+  },
+  {
+    "id": "EMP-1006",
+    "fullName": "Vikram Malhotra",
+    "email": "vikram.malhotra@company.com",
+    "phone": "+91 98205 11223",
+    "department": "Engineering",
+    "role": "Cloud DevOps Engineer",
+    "joinDate": "2023-05-12",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1007",
+    "fullName": "Ananya Iyer",
+    "email": "ananya.iyer@company.com",
+    "phone": "+91 98205 22334",
+    "department": "Product Design",
+    "role": "Senior Visual Designer",
+    "joinDate": "2023-07-19",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1008",
+    "fullName": "Aditya Joshi",
+    "email": "aditya.joshi@company.com",
+    "phone": "+91 98205 33445",
+    "department": "Marketing",
+    "role": "Digital Marketing Specialist",
+    "joinDate": "2022-10-04",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1009",
+    "fullName": "Meera Chawla",
+    "email": "meera.chawla@company.com",
+    "phone": "+91 98205 44556",
+    "department": "Human Resources",
+    "role": "Talent Acquisition Specialist",
+    "joinDate": "2024-02-15",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1010",
+    "fullName": "Rajesh Pillai",
+    "email": "rajesh.pillai@company.com",
+    "phone": "+91 98205 55667",
+    "department": "Engineering",
+    "role": "Full Stack Developer",
+    "joinDate": "2023-11-01",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1011",
+    "fullName": "Pooja Deshmukh",
+    "email": "pooja.deshmukh@company.com",
+    "phone": "+91 98205 66778",
+    "department": "Product Design",
+    "role": "UX Researcher",
+    "joinDate": "2024-01-20",
+    "status": "On Leave"
+  },
+  {
+    "id": "EMP-1012",
+    "fullName": "Siddharth Sengupta",
+    "email": "siddharth.sengupta@company.com",
+    "phone": "+91 98205 77889",
+    "department": "Engineering",
+    "role": "Data Engineer",
+    "joinDate": "2022-09-15",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1013",
+    "fullName": "Kavita Menon",
+    "email": "kavita.menon@company.com",
+    "phone": "+91 98205 88990",
+    "department": "Marketing",
+    "role": "Content Strategist",
+    "joinDate": "2023-04-10",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1014",
+    "fullName": "Arjun Singhania",
+    "email": "arjun.singhania@company.com",
+    "phone": "+91 98206 11223",
+    "department": "Engineering",
+    "role": "QA Automation Engineer",
+    "joinDate": "2023-08-22",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1015",
+    "fullName": "Deepa Bhattacharya",
+    "email": "deepa.bhattacharya@company.com",
+    "phone": "+91 98206 22334",
+    "department": "Human Resources",
+    "role": "HR Business Partner",
+    "joinDate": "2022-06-30",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1016",
+    "fullName": "Manish Aggarwal",
+    "email": "manish.aggarwal@company.com",
+    "phone": "+91 98206 33445",
+    "department": "Engineering",
+    "role": "Security Analyst",
+    "joinDate": "2024-03-05",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1017",
+    "fullName": "Ritu Kapoor",
+    "email": "ritu.kapoor@company.com",
+    "phone": "+91 98206 44556",
+    "department": "Product Design",
+    "role": "Interaction Designer",
+    "joinDate": "2023-12-11",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1018",
+    "fullName": "Varun Reddy",
+    "email": "varun.reddy@company.com",
+    "phone": "+91 98206 55667",
+    "department": "Marketing",
+    "role": "Brand Manager",
+    "joinDate": "2021-12-01",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1019",
+    "fullName": "Shreya Mukherjee",
+    "email": "shreya.mukherjee@company.com",
+    "phone": "+91 98206 66778",
+    "department": "Engineering",
+    "role": "Mobile App Developer",
+    "joinDate": "2024-04-18",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1020",
+    "fullName": "Nikhil Saxena",
+    "email": "nikhil.saxena@company.com",
+    "phone": "+91 98206 77889",
+    "department": "Human Resources",
+    "role": "Payroll & Benefits Specialist",
+    "joinDate": "2023-02-28",
+    "status": "Inactive"
+  },
+  {
+    "id": "EMP-1021",
+    "fullName": "Swati Banerjee",
+    "email": "swati.banerjee@company.com",
+    "phone": "+91 98207 11223",
+    "department": "Product Design",
+    "role": "Design Systems Lead",
+    "joinDate": "2022-11-14",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1022",
+    "fullName": "Harish Venkatesh",
+    "email": "harish.venkatesh@company.com",
+    "phone": "+91 98207 22334",
+    "department": "Engineering",
+    "role": "Site Reliability Engineer",
+    "joinDate": "2023-06-08",
+    "status": "On Leave"
+  },
+  {
+    "id": "EMP-1023",
+    "fullName": "Neha Choudhury",
+    "email": "neha.choudhury@company.com",
+    "phone": "+91 98207 33445",
+    "department": "Marketing",
+    "role": "SEO & Growth Marketer",
+    "joinDate": "2024-05-02",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1024",
+    "fullName": "Gaurav Chauhan",
+    "email": "gaurav.chauhan@company.com",
+    "phone": "+91 98207 44556",
+    "department": "Engineering",
+    "role": "Systems Architect",
+    "joinDate": "2021-08-19",
+    "status": "Active"
+  },
+  {
+    "id": "EMP-1025",
+    "fullName": "Divya Sundaram",
+    "email": "divya.sundaram@company.com",
+    "phone": "+91 98207 55667",
+    "department": "Human Resources",
+    "role": "Employee Engagement Lead",
+    "joinDate": "2023-09-01",
+    "status": "Active"
   }
 ]
